@@ -1,4 +1,5 @@
 % Mike Kabot, AERO560 Assignment 3 - Reaction Wheels
+% Commented code - not needed for repo %
 clear; close all; clc
 
 %% Problem 2 - RWs
@@ -120,7 +121,7 @@ disp("Ag = ")
 disp(A_G)
 disp("Platform Inertia = ")
 disp(A_S*diag(I_ws*ones(1,4)))
-disp("Spacecraft Inerta = ")
+disp("Spacecraft Inertia = ")
 disp(J)
 disp("Kp = ")
 disp(K_p)
@@ -132,68 +133,6 @@ disp(K_d)
 out = sim("asn_3_fsfb_rw.slx", 40);
 
 %% Plot
-
-% b_ECI
-figure() % q_b_ECI - good
-hold on, grid on
-plot(out.tout, out.eps_b_ECI(:,1))
-plot(out.tout, out.eps_b_ECI(:,2))
-plot(out.tout, out.eps_b_ECI(:,3))
-plot(out.tout, out.eta_b_ECI)
-legend("\epsilon_1","\epsilon_2","\epsilon_3","\eta")
-xlabel("time [s]")
-title("q_{b,ECI}")
-
-figure() % eul_b_ECI - good
-hold on, grid on
-plot(out.tout, out.eul_b_ECI(:,1))
-plot(out.tout, out.eul_b_ECI(:,2))
-plot(out.tout, out.eul_b_ECI(:,3))
-legend("\phi","\theta","\psi")
-xlabel("time [s]")
-ylabel("angle [rad]")
-title("eul_{b,ECI}")
-
-figure() % w_b_ECI - good
-hold on, grid on
-plot(out.tout, out.w_b_ECI(:,1))
-plot(out.tout, out.w_b_ECI(:,2))
-plot(out.tout, out.w_b_ECI(:,3))
-legend("\omega_1","\omega_2","\omega_3")
-xlabel("time [s]")
-ylabel("angle/s [rad/s]")
-title("\omega_{b,ECI}")
-
-% F_LVLH_ECI
-figure() % q_LVLH_ECI 
-hold on, grid on
-plot(out.tout, out.eps_LVLH_ECI(:,1)) 
-plot(out.tout, out.eps_LVLH_ECI(:,2))
-plot(out.tout, out.eps_LVLH_ECI(:,3))
-plot(out.tout, out.eta_LVLH_ECI)
-legend("\epsilon_1","\epsilon_2","\epsilon_3","\eta")
-xlabel("time [s]")
-title("q_{LVLH,ECI}")
-
-figure() % eul_LVLH_ECI
-hold on, grid on
-plot(out.tout, out.eul_LVLH_ECI(:,1))
-plot(out.tout, out.eul_LVLH_ECI(:,2))
-plot(out.tout, out.eul_LVLH_ECI(:,3))
-legend("\phi","\theta","\psi")
-xlabel("time [s]")
-ylabel("angle [rad]")
-title("eul_{LVLH,ECI}")
-
-figure() % w_b_LVLH
-hold on, grid on
-plot(out.tout, out.w_LVLH_ECI(1,:))
-plot(out.tout, out.w_LVLH_ECI(2,:))
-plot(out.tout, out.w_LVLH_ECI(3,:))
-legend("\omega_1","\omega_2","\omega_3")
-xlabel("time [s]")
-ylabel("angle/s [rad/s]")
-title("\omega_{LVLH,ECI}")
 
 % b_LVLH
 figure() % q_b_LVLH 
@@ -232,143 +171,78 @@ xlabel("time [s]")
 ylabel("\theta_{sensor} [degrees]")
 title("\theta_{sensor}")
 
-figure() % Omega
+figure() % Omega (wheel speeds)
 plot(out.Omega)
 xlabel("time [s]")
-ylabel("\theta_{sensor} [degrees]")
-title("\theta_{sensor}")
+ylabel("wheel speed [rad/s]")
+title("Wheel speeds")
 
-% %% Problem 3 - CMGs
-% 
-% % weheel parameters
-% m = 4.5; % kg
-% h = 0.05; % m
-% r = 0.2; % m
-% Omega = [800;800;800;800]; % rad/s
-% 
-% I_cs = diag(1/2*m*r^2*ones(1, 4));
-% I_ct = diag(1/4*m*r^2 + 1/12*m*h^2*ones(1,4));
-% 
-% %% displays
-% disp("As = ")
-% disp(A_S)
-% disp("At = ")
-% disp(A_T)
-% disp("Ag = ")
-% disp(A_G)
-% disp("Platform Inertia = ")
-% disp(A_S*I_cs+ A_T*I_ct)
-% disp("Spacecraft Inerta = ")
-% disp(J)
-% disp("Kp = ")
-% disp(K_p)
-% disp("Kd = ")
-% disp(K_d)
-% 
-% 
-% %% Run Simulink (RW)
-% 
-% out = sim("asn_3_fsfb_cmg.slx", 40);
-% 
-% %% Plot
-% 
-% % b_ECI
-% figure() % q_b_ECI - good
-% hold on, grid on
-% plot(out.tout, out.eps_b_ECI(:,1))
-% plot(out.tout, out.eps_b_ECI(:,2))
-% plot(out.tout, out.eps_b_ECI(:,3))
-% plot(out.tout, out.eta_b_ECI)
-% legend("\epsilon_1","\epsilon_2","\epsilon_3","\eta")
-% xlabel("time [s]")
-% title("q_{b,ECI}")
-% 
-% figure() % eul_b_ECI - good
-% hold on, grid on
-% plot(out.tout, out.eul_b_ECI(:,1))
-% plot(out.tout, out.eul_b_ECI(:,2))
-% plot(out.tout, out.eul_b_ECI(:,3))
-% legend("\phi","\theta","\psi")
-% xlabel("time [s]")
-% ylabel("angle [rad]")
-% title("eul_{b,ECI}")
-% 
-% figure() % w_b_ECI - good
-% hold on, grid on
-% plot(out.w_b_ECI)
-% legend("\omega_1","\omega_2","\omega_3")
-% xlabel("time [s]")
-% ylabel("angle/s [rad/s]")
-% title("\omega_{b,ECI}")
-% 
-% % F_LVLH_ECI
-% figure() % q_LVLH_ECI 
-% hold on, grid on
-% plot(out.tout, out.eps_LVLH_ECI(:,1)) 
-% plot(out.tout, out.eps_LVLH_ECI(:,2))
-% plot(out.tout, out.eps_LVLH_ECI(:,3))
-% plot(out.tout, out.eta_LVLH_ECI)
-% legend("\epsilon_1","\epsilon_2","\epsilon_3","\eta")
-% xlabel("time [s]")
-% title("q_{LVLH,ECI}")
-% 
-% figure() % eul_LVLH_ECI
-% hold on, grid on
-% plot(out.tout, out.eul_LVLH_ECI(:,1))
-% plot(out.tout, out.eul_LVLH_ECI(:,2))
-% plot(out.tout, out.eul_LVLH_ECI(:,3))
-% legend("\phi","\theta","\psi")
-% xlabel("time [s]")
-% ylabel("angle [rad]")
-% title("eul_{LVLH,ECI}")
-% 
-% figure() % w_b_LVLH
-% hold on, grid on
-% plot(out.w_LVLH_ECI)
-% legend("\omega_1","\omega_2","\omega_3")
-% xlabel("time [s]")
-% ylabel("angle/s [rad/s]")
-% title("\omega_{LVLH,ECI}")
-% 
-% % b_LVLH
-% figure() % q_b_LVLH 
-% hold on, grid on
-% plot(out.tout, out.eps_b_LVLH(:,1))
-% plot(out.tout, out.eps_b_LVLH(:,2))
-% plot(out.tout, out.eps_b_LVLH(:,3))
-% plot(out.tout, out.eta_b_LVLH)
-% legend("\epsilon_1","\epsilon_2","\epsilon_3","\eta")
-% xlabel("time [s]")
-% title("q_{b,LVLH}")
-% 
-% figure() % eul_b_LVLH
-% hold on, grid on
-% plot(out.tout, out.eul_b_LVLH(:,1))
-% plot(out.tout, out.eul_b_LVLH(:,2))
-% plot(out.tout, out.eul_b_LVLH(:,3))
-% legend("\phi","\theta","\psi")
-% xlabel("time [s]")
-% ylabel("angle [rad]")
-% title("eul_{b,LVLH}")
-% 
-% figure() % w_b_LVLH
-% hold on, grid on
-% plot(out.w_b_LVLH)
-% legend("\omega_1","\omega_2","\omega_3")
-% xlabel("time [s]")
-% ylabel("angle/s [rad/s]")
-% title("\omega_{b,LVLH}")
-% 
-% figure() % sensor angle
-% plot(out.tout,rad2deg(out.sensor_theta))
-% xlabel("time [s]")
-% ylabel("theta_{sensor} [degrees]")
-% title("theta_{sensor}")
-% 
-% figure() % gamma
-% plot(out.gamma)
-% xlabel("time [s]")
-% ylabel("gamma [degrees]")
-% title("gamma")
-% 
-% 
+%% Problem 3 - CMGs
+
+% weheel parameters
+m = 4.5; % kg
+h = 0.05; % m
+r = 0.2; % m
+Omega = [800;800;800;800]; % rad/s
+
+I_cs = diag(1/2*m*r^2*ones(1, 4));
+I_ct = diag(1/4*m*r^2 + 1/12*m*h^2*ones(1,4));
+
+%% displays
+disp("As = ")
+disp(A_S)
+disp("At = ")
+disp(A_T)
+disp("Ag = ")
+disp(A_G)
+disp("Platform Inertia = ")
+disp(A_S*I_cs+ A_T*I_ct)
+disp("Spacecraft Inerta = ")
+disp(J)
+disp("Kp = ")
+disp(K_p)
+disp("Kd = ")
+disp(K_d)
+
+
+%% Run Simulink (RW)
+
+out = sim("asn_3_fsfb_cmg.slx", 40);
+
+%% Plot
+
+% b_LVLH
+figure() % q_b_LVLH 
+hold on, grid on
+plot(out.tout, out.eps_b_LVLH(:,1))
+plot(out.tout, out.eps_b_LVLH(:,2))
+plot(out.tout, out.eps_b_LVLH(:,3))
+plot(out.tout, out.eta_b_LVLH)
+legend("\epsilon_1","\epsilon_2","\epsilon_3","\eta")
+xlabel("time [s]")
+title("q_{b,LVLH}")
+
+figure() % eul_b_LVLH
+hold on, grid on
+plot(out.tout, out.eul_b_LVLH(:,1))
+plot(out.tout, out.eul_b_LVLH(:,2))
+plot(out.tout, out.eul_b_LVLH(:,3))
+legend("\phi","\theta","\psi")
+xlabel("time [s]")
+ylabel("angle [rad]")
+title("eul_{b,LVLH}")
+
+figure() % w_b_LVLH
+hold on, grid on
+plot(out.w_b_LVLH)
+legend("\omega_1","\omega_2","\omega_3")
+xlabel("time [s]")
+ylabel("angle/s [rad/s]")
+title("\omega_{b,LVLH}")
+
+figure() % sensor angle
+plot(out.tout,rad2deg(out.sensor_theta))
+xlabel("time [s]")
+ylabel("theta_{sensor} [degrees]")
+title("theta_{sensor}")
+
