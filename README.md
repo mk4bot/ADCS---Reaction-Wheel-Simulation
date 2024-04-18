@@ -14,6 +14,8 @@ The simulation outputs for the reaction wheel control are shown below:
 
 <img src="/figures/rw_eul.png">
 
+<img src="/figures/rw_sens_angle.png">
+
 <img src="/figures/wheel_speeds.png">
 
 ## Control Moment Gyroscopes
@@ -25,3 +27,5 @@ The simulation outputs for the CMG control are shown below:
 <img src="/figures/cmg_q.png">
 
 <img src="/figures/cmg_eul.png">
+
+<img src="/figures/cmg_sens_angle.png">
